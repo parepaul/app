@@ -1,0 +1,12 @@
+{# src/NAC/PlatformBundle/Resources/views/Advert/menu.html.twig #}
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	<ul class="nav nav-pills nav-stacked">
+	  {% for advert in listAdverts %}
+		<li>
+		  <a href="{{ path('nac_platform_view', {'id': advert.id}) }}">
+			{{ advert.title }}
+		  </a>
+		</li>
+	  {% endfor %}
+	</ul>
+{% endif %}

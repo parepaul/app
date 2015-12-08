@@ -1,0 +1,19 @@
+{# src/NAC/PlatformBundle/Resources/views/layout.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  Annonces - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+  
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	  {% block nacplatform_body %}
+	  {% endblock %}
+  {% endif %}	
+{% endblock %}

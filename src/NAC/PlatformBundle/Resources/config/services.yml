@@ -1,0 +1,13 @@
+# src/NAC/PlatformBundle/Resources/config/services.yml
+
+services:
+    nac_platform.antispam:
+        class: NAC\PlatformBundle\Antispam\NACAntispam
+        arguments: [@mailer, %locale%, 50]
+     
+services:
+    nac_platform.doctrine.notification:
+        class: NAC\PlatformBundle\DoctrineListener\ApplicationNotification
+        arguments: [@mailer]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
