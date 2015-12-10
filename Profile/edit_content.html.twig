@@ -1,0 +1,21 @@
+
+<div class="well">
+	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal well" role="form">
+
+		{{ form_widget(form) }}
+		
+		<center><a href="{{ path('fos_user_change_password') }}">Changer de mot de passe</a></center>
+		<hr>
+		 <div class="form-group">
+			<center>
+			<input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+		    </center>
+		</div>
+		
+	</form>
+</div> 
+
+    
+
+	
+	
