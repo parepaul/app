@@ -1,0 +1,22 @@
+{# src/NAC/PlatformBundle/Resources/views/Advert/edit.html.twig #}
+
+{% extends "NACPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacplatform_body %}
+
+
+  {{ include("NACPlatformBundle:Advert:form-edit.html.twig") }}
+
+
+  <p>
+    <a href="{{ path('nac_platform_view', {'id': advert.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'annonce
+    </a>
+  </p>
+
+{% endblock %}

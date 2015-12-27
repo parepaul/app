@@ -1,0 +1,34 @@
+{# src/NAC/ProspectBundle/Resources/view/Prospect/view.html.twig #}
+
+{% extends "NACProspectBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacprospect_body %}
+  
+    <header>
+        <h1>Contact symblog</h1>
+    </header>
+    
+	
+
+    <p>Want to contact symblog?</p>
+
+    <form action="{{ path('nac_prospect_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.body) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Submit" />
+    </form>
+   
+{% endblock %}
+
+	

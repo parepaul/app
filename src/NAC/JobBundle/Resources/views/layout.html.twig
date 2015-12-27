@@ -1,0 +1,21 @@
+{# src/NAC/JobBundle/Resources/views/layout.html.twig #}
+
+{% extends "::layout-job.html.twig" %}
+
+
+  
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+  
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  
+  {% block nacjob_body %}
+  {% endblock %}
+
+{% endblock %}

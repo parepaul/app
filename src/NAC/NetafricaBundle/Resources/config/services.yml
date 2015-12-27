@@ -1,0 +1,4 @@
+services:
+#    nac_netafrica.example:
+#        class: NAC\NetafricaBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

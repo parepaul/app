@@ -1,0 +1,40 @@
+{# src/NAC/JobBundle/Resources/views/Job/form.html.twig #}
+
+{# Le formulaire reste inchangé #}
+
+
+<div class="well">
+  
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+   <legend>Créer une catégorie d'emploi</legend>
+   <p>les champs marqués d'un * sont obligatoires.</p>
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.name, "Catégorie Emploi*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.name) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+			
+	
+  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+  <hr>
+  <center>
+	{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+  </center>
+  {# Génération automatique des champs pas encore écrits.
+     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+     et tous les champs cachés (type « hidden »). #}
+  {{ form_rest(form) }}
+  
+  {# Fermeture de la balise <form> du formulaire HTML #}
+  
+  </fieldset>
+  {{ form_end(form) }}
+  
+</div>
+

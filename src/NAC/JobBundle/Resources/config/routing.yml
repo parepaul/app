@@ -1,0 +1,33 @@
+# src/NAC/JobBundle/Resources/config/routing.yml
+
+job_jobplatform_home:
+    path:      /{page}
+    defaults:  { _controller: NACJobBundle:Job:index, page: 1 }
+    requirements:
+        page: \d*
+
+job_jobplatform_view:
+    path:      /job/{id}
+    defaults:  { _controller: NACJobBundle:Job:view }
+    requirements:
+        id: \d+
+
+job_jobplatform_add:
+    path:      /add
+    defaults:  { _controller: NACJobBundle:Job:add }
+
+job_jobplatform_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: NACJobBundle:Job:edit }
+    requirements:
+        id: \d+
+
+job_jobplatform_delete:
+    path:      /delete/{id}
+    defaults:  { _controller: NACJobBundle:Job:delete }
+    requirements:
+        id: \d+
+
+job_jobplatform_jobcategorie:
+    path:      /adddjobcategorie
+    defaults:  { _controller: NACJobBundle:Job:addjobcategorie }

@@ -1,0 +1,18 @@
+{# src/NAC/PlatformBundle/Resources/views/Advert/menu.html.twig #}
+
+
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dernières offres de formation publiées</h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-group">
+	 {% for advert in listAdverts %}
+	  <li class="list-group-item">
+		<span class="badge">{{ advert.tarif }} Fcfa/HT</span>
+		 <a href="{{ path('nac_platform_view', {'id': advert.id}) }}">{{ advert.title }} </a>
+	  </li>
+	  {% endfor %}
+	</ul>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+nac_netafrica_home:
+    path:      /{page}
+    defaults:  { _controller: NACNetafricaBundle:Netafrica:index, page: 1 }
+    requirements:
+        page: \d*

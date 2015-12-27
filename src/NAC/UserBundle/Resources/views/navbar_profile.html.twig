@@ -1,0 +1,14 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+{% block navbar %}
+<div role="navigation">
+    <ul class="nav nav-tabs">
+    {% set tabs = [
+        {'route': 'fos_user_profile_show', 'label': 'Votre Profil'},
+        {'route': 'fos_user_profile_edit', 'label': 'Modifier votre profil'},
+        {'route': 'fos_user_change_password', 'label': 'Changer votre mot de passe'}] %}
+    {% for tab in tabs %}
+        <li {% if tab.route == app.request.attributes.get('_route') %}class="active"{% endif %}><a href="{{ path(tab.route) }}">{{ tab.label|trans({}, 'FOSUserBundle') }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

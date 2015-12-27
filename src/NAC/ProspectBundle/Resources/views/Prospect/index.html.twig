@@ -1,0 +1,75 @@
+{# src/NAC/ProspectBundle/Resources/views/Prospect/index.html.twig #}
+
+{% extends "NACProspectBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block nacprospect_body %}
+
+
+  {% for prospect in listProspects %}
+  
+	<div class="panel panel-default">
+	  <div class="panel-body">
+        
+	    
+		<table class="table table-striped table-hover" BORDER=0 CELLPADDING=0 CELLSPACING=0 >
+		  <tbody>
+			<tr style="background-color: #ffffff;" VALIGN=top>
+			  <td width="70%">
+			  
+			    <div class="well well-sm">
+				     <a href="{{ path('nac_prospect_view', {'id': prospect.id}) }}"> {{ prospect.titre }}</a> -	
+				   
+					 {% for domaine in prospect.domaines %}
+							 <i>{{ domaine.name }}</i>{% if not loop.last %}, {% endif %}
+				     {% endfor %}
+                    					
+                </div>
+			    
+				
+			  </td>
+			  
+			  <td>
+			  {% if is_granted('ROLE_USER') %}
+			    <p><span class="badge"> <a href="{{ path('nac_prospect_view', {'id': prospect.id}) }}" class="btn btn-primary btn-xs">Envoyer un mail </a></span></p>
+			  {% else %}
+			    <p><span class="badge"> <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-xs">Envoyer un mail </a></span></p>
+			  {% endif %}
+			  </td>
+			  
+			</tr>
+		    <tr VALIGN=top>
+			  <td colspan=2>
+			   {{ prospect.resume }}
+			  </td>
+			</tr>
+		  </tbody>
+		</table> 
+		
+		
+	  </div>
+	  <div class="panel-footer">
+	    <span class="badge"> Siège social: {{ prospect.localite }}</span>
+	    <span class="badge"> Tel.: {{ prospect.tel }}</span>
+		<span class="badge"><a href="{{ path('nac_prospect_view', {'id': prospect.id}) }}">Présentation détaillée</a></span>
+	  </div>
+	</div>
+  
+  
+  
+{% endfor %}
+
+  <ul class="pagination">
+  {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+  {% for p in range(1, nbPages) %}
+    <li{% if p == page %} class="active"{% endif %}>
+      <a href="{{ path('nac_prospect_home', {'page': p}) }}">{{ p }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}
+

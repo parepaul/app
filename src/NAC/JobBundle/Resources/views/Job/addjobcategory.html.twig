@@ -1,0 +1,15 @@
+{# src/NAC/JobBundle/Resources/views/Job/addjobcategory.html.twig #}
+
+{% extends "NACJobBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une categorie - {{ parent() }}
+{% endblock %}
+
+{% block nacjob_body %}
+
+
+  {{ include("NACJobBundle:Job:formjobcategory.html.twig") }}
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+# src/NAC/PlatformBundle/Resources/config/routing.yml
+
+nac_platform_home:
+    path:      /{page}
+    defaults:  { _controller: NACPlatformBundle:Advert:index, page: 1 }
+    requirements:
+        page: \d*
+
+nac_platform_view:
+    path:      /advert/{id}
+    defaults:  { _controller: NACPlatformBundle:Advert:view }
+    requirements:
+        id: \d+
+
+nac_platform_add:
+    path:      /add
+    defaults:  { _controller: NACPlatformBundle:Advert:add }
+
+nac_platform_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: NACPlatformBundle:Advert:edit }
+    requirements:
+        id: \d+
+
+nac_platform_delete:
+    path:      /delete/{id}
+    defaults:  { _controller: NACPlatformBundle:Advert:delete }
+    requirements:
+        id: \d+
+
+nac_platform_app:
+    path:      /app/{id}
+    defaults:  { _controller: NACPlatformBundle:Advert:app }
+
+nac_platform_category:
+    path:      /addcat
+    defaults:  { _controller: NACPlatformBundle:Advert:addcategorie }
+
+nac_platform_contact:
+    path:      /contact
+    defaults:  { _controller: NACPlatformBundle:Advert:contact }
+    requirements:
+        _method:  GET|POST

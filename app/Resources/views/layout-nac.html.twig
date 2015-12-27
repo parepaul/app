@@ -1,0 +1,191 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}NAC Plateforme{% endblock %}</title>
+  
+  {% stylesheets 'bundles/publicnac/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
+  
+  {% stylesheets 'bundles/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
+  
+  {% javascripts 'bundles/publicnac/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+  
+ 
+  
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="{{ path('nac_netafrica_home') }}" class="navbar-brand">Agence Web Net Africa Consult</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            
+						
+			<li>
+              <a href="{{ path('nac_platform_home') }}">Nos offres de Formation</a> 
+            </li>
+			
+			<li>
+              <a href="{{ path('fos_user_security_login') }}">Consulter notre Annuaire</a> 
+            </li>
+            
+			
+			<li>
+              <a href="mailto:inf@netafrica-consult.com">Nous Contacter</a>
+            </li>
+            
+            
+          </ul>
+           
+          <ul class="nav navbar-nav navbar-right">
+               
+			   <li class="dropdown">          
+							
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					   
+					 <button type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff;">{{ app.user.username }} <span class="caret"></span></a>
+						</span> 
+					 </button>  
+						<ul class="dropdown-menu" aria-labelledby="themes">
+										
+							<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+						</ul>	
+				{% else %}
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Session <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+												
+							<li><a href="{{ path('fos_user_registration_register') }}">Créer un compte</a></li>
+						</ul>
+				{% endif %}				
+							
+                </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+   
+    
+	 {% block body %}
+     {% endblock %}
+
+      <section id="bottom">
+        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>A Propos!</h3>
+                        <ul>
+                            <li><a href="#">Qui sommes-nous?</a></li>
+                            <li><a href="#">Pourquoi nous?</a></li>
+                            <li><a href="#">L'équipe de NAC</a></li>
+                            <li><a href="#">Nous contacter</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#">Faq</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Forum</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Nos Services</h3>
+                        <ul>
+                            <li><a href="#">Web Development</a></li>
+                            <li><a href="#">SEO Marketing</a></li>
+                            <li><a href="#">Web Marketing</a></li>
+                            <li><a href="#">Web Management</a></li>
+                           
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Nos Applications</h3>
+                        <ul>
+                            <li><a href="#">NAC E-Formation</a></li>
+                            <li><a href="#">NAC E-Annuaire </a></li>
+                            <li><a href="#">NAC E-business</a></li>
+							<li><a href="#">Job Africa</a></li>
+                            
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+            </div>
+        </div>
+    </section><!--/#bottom-->
+	  
+      <!-- Dialogs
+      ================================================== -->
+      
+	  <div class="bs-docs-section">
+	  
+		  <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2015 <a target="_blank" href="http://netafrica-consult.com/" title="Agence Web Net Africa Consult">Net Africa Consult</a>. Tous droits réservés.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">A Propos!</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+       
+	   </div>
+
+    
+
+    
+    
+	  {% block javascripts %}
+		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	  
+	    
+	  
+	  {% endblock %}
+	  
+	  
+  </body>
+</html>

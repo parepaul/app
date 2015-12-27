@@ -1,0 +1,18 @@
+{# src/NAC/JobBundle/Resources/views/Job/menu.html.twig #}
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dernières offres d'emploi publiées</h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-group">
+	 {% for job in listJobs %}
+	  <li class="list-group-item">
+		<span class="badge">{{ job.author }} </span>
+		 <a href="{{ path('job_jobplatform_view', {'id': job.id}) }}">{{ job.title }} </a>
+	  </li>
+	  {% endfor %}
+	</ul>
+  </div>
+</div>

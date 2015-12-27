@@ -1,0 +1,186 @@
+{# app/Resources/views/connect.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}NAC Plateforme{% endblock %}</title>
+  
+  {% block stylesheets %}
+        
+		
+	  {% stylesheets 'bundles/public/css/*' filter='cssrewrite' %}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	  {% endstylesheets %}
+	  
+	  {% javascripts 'bundles/public/js/*' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	  {% endjavascripts %}
+  
+  {% endblock %}
+  
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+ 
+</head>
+
+<body>
+	
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="{{ path('nac_platform_home') }}" class="navbar-brand">Net Africa Consult</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          
+		  <ul class="nav navbar-nav">
+            
+			<li>
+              <a href="{{ path('nac_platform_home') }}">Formations</a>
+            </li>
+			
+			
+			<li>
+              <a href="{{ path('job_jobplatform_home') }}"> Emplois </a> 
+            </li>
+			<li>
+              <a href="{{ path('nac_prospect_home') }}"> Annuaire Entreprise</a> 
+            </li>
+			
+			
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			
+				<ul class="nav navbar-nav navbar-left">
+				   <li class="dropdown">          
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Business Solutions<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Compte Premium</a></li>
+							</ul>			
+					</li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-left">
+				   <li class="dropdown">          
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion des Formations<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{{ path('nac_platform_add') }}">Poster une Formation</a></li>
+								<li><a href="{{ path('nac_platform_category') }}">Ajouter une Catégorie</a></li>
+								
+							</ul>			
+					</li>
+				</ul>
+				
+		   {% else %}
+			
+				<ul class="nav navbar-nav navbar-left">
+				   <li class="dropdown">          
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace Annonceur<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Gestion des annonces</a></li>
+								<li><a href="#">Compte Premium</a></li>
+							</ul>			
+					</li>
+				</ul>
+				
+				<li>
+				  <a href="#"> Connexion</a>
+				</li>
+			
+			{% endif %}
+			<li>
+				  <a href="mailto:info@netafrica-consult.com">Contact</a>
+			</li>
+			
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+               <li class="dropdown">          
+							
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					   
+					 <button type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff;">{{ app.user.username }} <span class="caret"></span></a>
+						</span> 
+					 </button>  
+						<ul class="dropdown-menu" aria-labelledby="themes">
+										
+							<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+						</ul>	
+				{% else %}
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Session <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+												
+							<li><a href="{{ path('fos_user_registration_register') }}">Créer un compte</a></li>
+						</ul>
+				{% endif %}				
+							
+                </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      
+	    <div class="jumbotron">
+		  
+		 		    
+		  		  
+		  	<div class="row"> 
+			  <div class="col-lg-2"></div>
+			  <div class="col-lg-8">
+				<div class="bs-component">
+				  
+                  {% block body %}
+			      {% endblock %}
+					
+				</div>
+				<div class="col-lg-2"></div>
+              </div>
+			</div>
+			
+	    </div>
+	    
+	    <nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="#">© 2015 Net Africa Consult. Tous droits réservés.</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				  <ul class="nav navbar-nav"></ul>
+				  <ul class="nav navbar-nav navbar-right">
+					<li><a href="mailto:info@netafrica-consult.com">info@netafrica-consult.com</a></li>
+				  </ul>
+				</div>
+			</div>
+		</nav>
+		
+	</div>	
+	
+	  {% block javascripts %}
+		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	  {% endblock %}
+	  
+  </body>
+</html>

@@ -1,0 +1,113 @@
+{# src/NAC/ProspectBundle/Resources/view/Prospect/view.html.twig #}
+
+{% extends "NACProspectBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacprospect_body %}
+  
+  <div class="panel panel-default">
+	  <div class="panel-heading">
+	    <a href="#">{{ prospect.titre }} - </a>
+             		 
+			      {% for domaine in prospect.domaines %}
+							 <i>{{ domaine.name }}</i>{% if not loop.last %}, {% endif %}
+				     {% endfor %} 
+			
+	  </div>
+	  <div class="panel-body">
+			{{ prospect.content | nl2br }}
+			<hr>
+			 <div class="well well-sm">
+				 <center>
+				 <span class="label label-danger"><i>Localité: {{ prospect.localite }}</i></span>
+				 <span class="label label-danger"><i> Tel.: {{ prospect.tel }}</i></span>
+				 <span class="label label-danger"><i>E-mail.: {{ prospect.email }}</i> </span>
+				 
+
+				</center>
+			</div>			
+			
+			{% if is_granted('ROLE_USER') %}
+			    
+				{% for flashMessage in app.session.flashbag.get('notice') %}
+					<div class="flash-notice">
+						
+						<div class="alert alert-dismissible alert-success">
+						  <button type="button" class="close" data-dismiss="alert">Fermer</button>
+						  {{ flashMessage }}
+						</div>
+					</div>
+				{% endfor %}
+				
+				<div class="well">
+					  {{ form_start(form, {'attr': {'class': 'mail' }}) }}
+					  
+						<legend>Envoyé un mail à <a href="#">{{ prospect.titre }}</a></legend>
+						{{ form_errors(form) }}
+						
+						<div class="form-group">
+						  {{ form_label(form.name, "Nom:") }}
+						  {{ form_errors(form.name) }}
+						  
+							{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+						</div>
+						
+						<div class="form-group">
+						  {{ form_label(form.email, "E-mail:") }}
+						  {{ form_errors(form.email) }}
+						  
+							{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+						</div>
+						
+						<div class="form-group">
+						  {{ form_label(form.subject, "Sujet:") }}
+						  {{ form_errors(form.subject) }}
+						  
+							{{ form_widget(form.subject, {'attr': {'class': 'form-control'}}) }}
+						</div>	
+						
+						<div class="form-group">
+							{{ form_label(form.body, "Message:") }}
+							{{ form_errors(form.body) }}
+							
+								{{ form_widget(form.body, {'attr': {'class': 'form-control'}}) }}
+						</div>
+
+								
+						<div class="form-group">
+								<input id="submit" name="submit" type="submit" value="Envoyer" class="btn btn-primary">
+						</div>
+						
+					{{ form_rest(form) }}
+			   
+				</div>
+			
+			{% endif %}
+			
+	  </div>
+	</div>
+    
+	{% if is_granted('ROLE_ADMIN') %}
+	  <p>
+		<a href="{{ path('nac_prospect_home') }}" class="btn btn-default">
+		  <i class="glyphicon glyphicon-chevron-left"></i>
+		  Retour à la liste
+		</a>
+		<a href="{{ path('nac_prospect_edit', {'id': prospect.id}) }}" class="btn btn-default">
+		  <i class="glyphicon glyphicon-edit"></i>
+		  Modifier l'annonce
+		</a>
+		<a href="{{ path('nac_prospect_delete', {'id': prospect.id}) }}" class="btn btn-danger">
+		  <i class="glyphicon glyphicon-trash"></i>
+		  Supprimer l'annonce
+		</a>
+	  </p>
+     {% endif %}
+   
+
+   
+{% endblock %}
+

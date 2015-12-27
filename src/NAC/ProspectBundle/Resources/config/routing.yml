@@ -1,0 +1,34 @@
+# src/NAC/ProspectBundle/Resources/config/routing.yml
+
+nac_prospect_home:
+    path:      /{page}
+    defaults:  { _controller: NACProspectBundle:Prospect:index, page: 1 }
+    requirements:
+        page: \d*
+
+nac_prospect_view:
+    path:      /prospect/{id}
+    defaults:  { _controller: NACProspectBundle:Prospect:view }
+    requirements:
+        _method:  GET|POST
+        id: \d+
+
+nac_prospect_add:
+    path:      /add
+    defaults:  { _controller: NACProspectBundle:Prospect:add }
+
+nac_prospect_edit:
+    path:      /edit/{id}
+    defaults:  { _controller: NACProspectBundle:Prospect:edit }
+    requirements:
+        id: \d+
+
+nac_prospect_delete:
+    path:      /delete/{id}
+    defaults:  { _controller: NACProspectBundle:Prospect:delete }
+    requirements:
+        id: \d+
+
+nac_prospect_domaine:
+    path:      /adddomaine
+    defaults:  { _controller: NACProspectBundle:Prospect:adddomaine }

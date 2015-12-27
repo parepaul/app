@@ -1,0 +1,28 @@
+{# src/NAC/ProspectBundle/Resources/view/Prospect/edit.html.twig #}
+
+
+{% extends "NACProspectBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier un prospect - {{ parent() }}
+{% endblock %}
+
+{% block nacprospect_body %}
+
+  
+
+  {{ include("NACProspectBundle:Prospect:form-edit.html.twig") }}
+
+  <p>
+    Vous éditez une annonce déjà existante, merci de ne pas changer
+    l'esprit générale de l'annonce déjà publiée.
+  </p>
+
+  <p>
+    <a href="{{ path('nac_prospect_view', {'id': prospect.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'annonce
+    </a>
+  </p>
+
+{% endblock %}

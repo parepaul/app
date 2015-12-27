@@ -1,0 +1,13 @@
+{# src/NAC/JobBundle/Resources/views/Job/add.html.twig #}
+
+{% extends "NACJobBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajouter une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacjob_body %}
+
+  {{ include("NACJobBundle:Job:form.html.twig") }}
+
+{% endblock %}

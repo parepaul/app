@@ -1,0 +1,149 @@
+{# src/NAC/PlatformBundle/Resources/views/Advert/form.html.twig #}
+
+{# Le formulaire reste inchangé #}
+
+
+<div class="well">
+  
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+   <legend>Créer une offre de formation</legend>
+   <p>les champs marqués d'un * sont obligatoires.</p>
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+    {# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.date, "Date Publication*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.date) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	<div class="form-group">
+      {# Génération du label. #}
+      {{ form_label(form.title, "Intitulé Emploi*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.title) }}
+
+      <div class="col-lg-8">
+        {# Génération de l'input. #}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.jobcategories, "Catégorie Emploi*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.jobcategories) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.jobcategories, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.author, "Recruteur*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.author) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.author, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+	
+      {{ form_label(form.localite, "Ville Emploi*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.localite) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.localite, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.content, "Description*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.content) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.description, "Principal Attributions*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.description) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.experience, "Expériences*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.experience) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.experience, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.mode, "Procedure*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.mode) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.mode, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.composition, "Composition*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.composition) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.composition, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.postule, "Comment Postuler?*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.postule) }}
+      <div class="col-sm-8">
+        {{ form_widget(form.postule, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	
+	{# Idem pour un autre champ. #}
+    <div class="form-group">
+      {{ form_label(form.published, "Etat Publication*:", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+      {{ form_errors(form.published) }}
+      <div class="col-sm-1">
+        {{ form_widget(form.published, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+	
+	
+	
+  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+  <hr>
+  <center>
+	{{ form_widget(form.Soumettre, {'attr': {'class': 'btn btn-primary'}}) }}
+  </center>
+  {# Génération automatique des champs pas encore écrits.
+     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+     et tous les champs cachés (type « hidden »). #}
+  {{ form_rest(form) }}
+  
+  {# Fermeture de la balise <form> du formulaire HTML #}
+  
+  </fieldset>
+  {{ form_end(form) }}
+  
+</div>
+

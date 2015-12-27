@@ -1,0 +1,22 @@
+{# src/NAC/JobBundle/Resources/views/Job/edit.html.twig #}
+
+{% extends "NACJobBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacjob_body %}
+
+
+  {{ include("NACJobBundle:Job:form-edit.html.twig") }}
+
+
+  <p>
+    <a href="{{ path('job_jobplatform_view', {'id': job.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'annonce
+    </a>
+  </p>
+
+{% endblock %}

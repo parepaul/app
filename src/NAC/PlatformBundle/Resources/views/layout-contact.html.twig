@@ -1,0 +1,21 @@
+{# src/NAC/PlatformBundle/Resources/views/layout-contact.html.twig #}
+
+{% extends "::layout-contact.html.twig" %}
+
+
+  
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+  
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  
+  {% block nacplatform_body %}
+  {% endblock %}
+
+{% endblock %}

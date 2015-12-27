@@ -1,0 +1,22 @@
+{# src/NAC/PlatformBundle/Resources/views/Prospect/menuprospect.html.twig #}
+
+
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title">Dernières Entreprises inscrites à l'annuaire</h3>
+	</div>
+	<div class="panel-body">
+		<ul class="list-group">
+			{% for prospect in listProspects %}
+			  
+			  
+			  <li class="list-group-item">
+				<span class="badge">{{ prospect.email }}</span>
+				 <a href="{{ path('nac_prospect_view', {'id': prospect.id}) }}">{{ prospect.titre }} </a>
+			  </li>
+			{% endfor %}		  
+		  
+		</ul>
+	</div>
+</div>
+

@@ -1,0 +1,62 @@
+{# src/NAC/PlatformBundle/Resources/views/Advert/contact.html.twig #}
+
+{% extends "NACPlatformBundle::layout-contact.html.twig" %}
+
+{% block title %}
+  Ajouter une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacplatform_body %}
+
+    <div class="well">
+	 <form action="{{ path('nac_platform_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
+			<legend>Envoyé un mail à Net Africa Consult</legend>
+			{{ form_errors(form) }}
+
+			<div class="form-group">
+			  {{ form_label(form.name, "Nom, Prenom*:") }}
+			  {{ form_errors(form.name) }}
+				{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+			  {{ form_label(form.company, "Société*:") }}
+			  {{ form_errors(form.company) }}
+				{{ form_widget(form.company, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+			  {{ form_label(form.phone, "Tél*.:") }}
+			  {{ form_errors(form.phone) }}
+				{{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+			  {{ form_label(form.email, "E-mail*:") }}
+			  {{ form_errors(form.email) }}
+				{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+			  {{ form_label(form.subject, "Objet*:") }}
+			  {{ form_errors(form.subject) }}
+				{{ form_widget(form.subject, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			
+			<div class="form-group">
+			  {{ form_label(form.body, "Message*:") }}
+			  {{ form_errors(form.body) }}
+				{{ form_widget(form.body, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			
+
+			{{ form_rest(form) }}
+    
+			<input type="submit" value="Envoyer" class="btn btn-primary" />
+		</form>
+	</div>
+{% endblock %}
+  
+
+  
+

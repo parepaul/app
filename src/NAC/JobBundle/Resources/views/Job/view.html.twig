@@ -1,0 +1,79 @@
+{# src/NAC/JobBundle/Resources/view/Job/view.html.twig #}
+
+{% extends "NACJobBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacjob_body %}
+  
+	<div class="panel panel-default">
+	  <div class="panel-heading"><a href="#">{{ job.title }}</a> <span class="badge"> A {{ job.localite }}</span>	</div>
+	  <div class="panel-body">
+		
+		<ul class="breadcrumb">
+			  <li><a href="#">Recruteur: {{ job.author }} </a></li>
+			  <li><a href="#">Publiée le: {{ job.date|date('d/m/Y') }} </a></li>
+			  
+		</ul>
+		
+		<div class="list-group">
+		  
+		  <a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">Description de l'offre </h4>
+			<p class="list-group-item-text">
+			 {{ job.content | nl2br }}
+			</p>
+		  </a>
+		  
+		  <a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">Principales attributions </h4>
+			<p class="list-group-item-text">{{ job.description | nl2br }}</p>
+		  </a>
+		  
+		  <a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">Qualifications requises </h4>
+			<p class="list-group-item-text">{{ job.experience | nl2br }}</p>
+		  </a>
+		  
+		  <a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">Procédure de recrutement </h4>
+			<p class="list-group-item-text">{{ job.mode | nl2br }}</p>
+		  </a>
+		  
+		   <a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">Composition des dossiers de candidature  </h4>
+			<p class="list-group-item-text">
+			{{ job.composition | nl2br }}
+			</p>
+		  </a>
+		  
+		  <a href="#" class="list-group-item">
+			<h4 class="list-group-item-heading">Comment Postuler?</h4>
+			<p class="list-group-item-text">{{ job.postule | nl2br }}</p>
+		  </a>
+		  
+		</div>
+		  
+	  </div>
+	</div>
+    
+	{% if is_granted('ROLE_ADMIN') %}
+	  <p>
+		<a href="{{ path('job_jobplatform_home') }}" class="btn btn-default">
+		  <i class="glyphicon glyphicon-chevron-left"></i>
+		  Retour à la liste
+		</a>
+		<a href="{{ path('job_jobplatform_edit', {'id': job.id}) }}" class="btn btn-default">
+		  <i class="glyphicon glyphicon-edit"></i>
+		  Modifier l'annonce
+		</a>
+		<a href="{{ path('job_jobplatform_delete', {'id': job.id}) }}" class="btn btn-danger">
+		  <i class="glyphicon glyphicon-trash"></i>
+		  Supprimer l'annonce
+		</a>
+	  </p>
+     {% endif %}
+	 
+{% endblock %}

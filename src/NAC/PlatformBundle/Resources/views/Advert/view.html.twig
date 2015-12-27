@@ -1,0 +1,142 @@
+{# src/NAC/PlatformBundle/Resources/view/Advert/view.html.twig #}
+
+{% extends "NACPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+{% block nacplatform_body %}
+    
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+		<div class="flash-notice">
+						
+			<div class="alert alert-dismissible alert-success">
+				 <button type="button" class="close" data-dismiss="alert">
+				  Fermer	
+				 </button>
+				  {{ flashMessage }}
+			</div>
+		</div>
+	{% endfor %}
+	
+	<div class="panel panel-default">
+	  <div class="panel-heading">{{ advert.title }} <span class="badge"> A {{ advert.ville }}</span>	</div>
+	  <div class="panel-body">
+		
+		<div class="table-responsive">
+		 
+		 <table class="table table-striped table-hover">
+		  <tbody>
+			<tr style="background-color: #ffffff;">
+			  <td width="30%">
+			  {% if advert.image is not null %}
+				<a href="{{ path('nac_platform_view', {'id': advert.id}) }}">
+				
+				  <img 
+					  src="{{ asset(advert.image.webPath) }}"
+					  alt="{{ advert.image.alt }}"
+					/>
+				</a>
+			  {% endif %}
+			  </td>
+			  
+			  <td>
+			   <div class="well well-sm">
+				  Agence formateur: <a href="{{ advert.url }}" target="_blank">{{ advert.author }}</a>
+			   </div>
+			   <br>
+				 <span class="badge"> Réf: {{ advert.reference }}</span>
+				 <span class="badge"> Prix: {{ advert.tarif }} HT</span>
+				 <span class="badge"> Temps: {{ advert.duree }}h</span>	
+			  </td>
+			</tr>
+           			
+		  </tbody>
+		</table>
+       
+	   </div>		 
+		  <div class="well well-sm">
+		   Situation géographique: {{ advert.lieu }}
+		  </div>
+		  <ul class="nav nav-tabs">
+			  <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Programme</a></li>
+			  <li class=""><a href="#pourqui" data-toggle="tab" aria-expanded="true">Pour qui?</a></li>
+			  <li class=""><a href="#prerequis" data-toggle="tab" aria-expanded="true">Prérequis?</a></li>
+			  <li class=""><a href="#objectif" data-toggle="tab" aria-expanded="true">Objectif</a></li>
+			  <li class=""><a href="#planning" data-toggle="tab" aria-expanded="true">Planning</a></li>
+           </ul>
+			<div id="myTabContent" class="tab-content">
+			  
+			  <div class="tab-pane fade active in" id="home">
+				<hr>{{ advert.content | nl2br }}
+			  </div>
+			  <div class="tab-pane fade" id="pourqui">
+				<hr>{{ advert.pourqui | nl2br }}
+			  </div>
+			  <div class="tab-pane fade" id="prerequis">
+				<hr>{{ advert.prerequis | nl2br }}
+			  </div>
+			  <div class="tab-pane fade" id="objectif">
+				<hr>{{ advert.objectif | nl2br }}
+			  </div>
+			  <div class="tab-pane fade" id="planning">
+				<hr>{{ advert.planning | nl2br }}
+			  </div>
+			</div>
+		  <br/>
+		  <a href="{{ path('nac_platform_app', {'id': advert.id}) }}" class="btn btn-primary btn-sm">S'inscrire à la formation</a>
+	  </div>
+	</div>
+    
+	
+	
+   <p>
+    	
+	
+	
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('nac_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
+		  <i class="glyphicon glyphicon-edit"></i>
+		  Modifier l'annonce
+		</a>
+		
+		
+		
+		<a href="{{ path('nac_platform_delete', {'id': advert.id}) }}" class="btn btn-danger">
+		  <i class="glyphicon glyphicon-trash"></i>
+		  Supprimer l'annonce
+		</a>
+	{% endif %}
+  
+  </p>
+
+ {% if is_granted('ROLE_ADMIN') %} 
+	  <h2>Liste des Candidatures</h2>
+  
+  <ul>
+  
+	  <div class="panel panel-success">
+		  {% for application in listApplications %}
+		  
+			  <div class="panel-heading">
+				<h3 class="panel-title">Posté le {{ application.date|date('d/m/Y') }}, par {{ application.author }}</h3>
+			  </div>
+			  <div class="panel-body">
+				{{ application.content }}
+				
+			  </div>
+			  
+	   {% else %}
+		  Pas (encore !) de candidature
+	   {% endfor %}
+	  </div>
+  
+  </ul>
+  
+  {% endif %}
+  
+ 
+  
+
+{% endblock %}

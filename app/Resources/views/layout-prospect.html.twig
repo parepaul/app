@@ -1,0 +1,472 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}NAC Plateforme{% endblock %}</title>
+  
+  {% stylesheets 'bundles/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+  {% endstylesheets %}
+  
+  {% javascripts 'bundles/public/js/*' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+
+  
+</head>
+
+<body>
+    	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="{{ path('nac_prospect_home') }}" class="navbar-brand">Net Africa Consult</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            
+			<li>
+              <a href="{{ path('nac_platform_home') }}">Formations</a>
+            </li>
+			
+			
+			<li>
+              <a href="{{ path('job_jobplatform_home') }}"> Emplois </a>   
+            </li>
+			
+			<li>
+              <a href="{{ path('nac_prospect_home') }}"> Annuaire </a> 
+            </li>
+			
+			
+			
+           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+			
+				<ul class="nav navbar-nav navbar-left">
+				   <li class="dropdown">          
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Business Solutions<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Compte Premium</a></li>
+							</ul>			
+					</li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-left">
+				   <li class="dropdown">          
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion de l'annuaire<span class="caret"></span></a>
+							{% if is_granted('ROLE_ADMIN') %}
+								<ul class="dropdown-menu">
+									<li><a href="{{ path('nac_prospect_add') }}">Ajouter une Entreprise</a></li>
+									<li><a href="{{ path('nac_prospect_domaine') }}">Nouvelle Catégorie </a></li>	
+								</ul>
+							{% endif %}							
+					</li>
+				</ul>
+				
+		   {% else %}
+			
+				<ul class="nav navbar-nav navbar-left">
+				   <li class="dropdown">          
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Business Solutions<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Devenir Annonceur</a></li>
+								<li><a href="#">Compte Premium</a></li>
+							</ul>			
+					</li>
+				</ul>
+				
+				<li>
+				  <a href="{{ path('fos_user_registration_register') }}"> Créer un compte</a>
+				</li>
+				
+				<li>
+				  <a href="{{ path('fos_user_security_login') }}"> Connexion</a>
+				</li>
+			
+			{% endif %}
+			<li>
+				  <a href="{{ path('nac_platform_contact') }}">Contact</a>
+			</li>
+			
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+               <li class="dropdown">          
+							
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					   
+					 <button type="button" class="btn btn-primary btn-lg">
+						<span class="glyphicon glyphicon-user">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #ffffff;">{{ app.user.username }} <span class="caret"></span></a>
+						</span> 
+					 </button>  
+						<ul class="dropdown-menu" aria-labelledby="themes">
+							<li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>	
+							<li><a href="#">Premium</a></li>			
+							<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+						</ul>	
+				{% else %}
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Session <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+												
+							<li><a href="{{ path('fos_user_registration_register') }}">Créer un compte</a></li>
+						</ul>
+				{% endif %}				
+							
+                </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+      
+	  <div class="jumbotron">
+		  <h1>Annuaire Net Africa Consult</h1>
+		  <div class="col-lg-5">  
+			<div class="form-group">
+				<div class="icon-addon addon-md">
+					<input type="text" placeholder="Mot clé, Thématique..." class="form-control" id="Textemd">
+					<i class="icon icon-lock"></i>
+				</div>
+			</div>
+        </div> 
+
+	  </div>
+	 
+	  <!-- Typography
+      ================================================== -->
+      <div class="bs-docs-section">
+        
+       <div class="bs-docs-section">
+        
+        <!-- Headings -->
+
+        <div class="row">
+          <div class="col-lg-2">
+     					
+			<div class="list-group">
+			  
+			  <a href="http://alainsissao.net" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Pr Alain SISSAO</h4>
+				<p class="list-group-item-text">Pr. Alain Joseph SISSAO Directeur de Recherches en littérature africaine Chevalier des Palmes Académiques Option...</p>
+			  </a>
+			  			 
+			  <a href="http://netafrica-consult.org" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Net Africa Culture</h4>
+				<p class="list-group-item-text">Site d'information culturel et sportif de l'Association Panafricaine pour la Promotion des Artistes par les TIC...</p>
+			  </a>
+			  
+			  <a href="http://outii.net" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Blog Outii.net</h4>
+				<p class="list-group-item-text">blog officiel du journaliste culturel burkinabè Alassane KERE...</p>
+			  </a>
+			  
+			  <a href="http://www.residencesalta.com" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Résidence Salta</h4>
+				<p class="list-group-item-text">Un endroit exceptionnel pour vos affaires et vos vacances à Zagtouli... </p>
+			  </a>
+			  
+			  <a href="http://www.aaev-bf.org/" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Association A.A.E.V-BF</h4>
+				<p class="list-group-item-text">L'Association d'Aide à l'Enfance et aux Veuves au Burkina Faso (A.A.E.V-BF)... </p>
+			  </a>
+			  
+			  <a href="http://www.ebcc-bf.com/" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Société E.B.C.C</h4>
+				<p class="list-group-item-text">La solution pour la maintenance de vos équipements... </p>
+			  </a>
+			  
+			   <a href="http://www.luckyneverdie.net/" class="list-group-item" target="_blank">
+				<h4 class="list-group-item-heading">Festival Lucky Never Die</h4>
+				<p class="list-group-item-text"> En hommage à l’artiste musicien Sud Africain Lucky Dube... </p>
+			  </a>
+
+			
+			</div>
+			
+          </div>
+          <div class="col-lg-6">
+            <div class="bs-component">
+              
+              {% block body %}
+              {% endblock %}
+            </div>
+
+          </div>
+          
+		  <div class="col-lg-4">
+            <div class="bs-component">
+              
+              {{ render(controller("NACPlatformBundle:Advert:menu", {'limit': 3})) }}
+            </div>	
+         </div> 
+		 
+		  <div class="col-lg-4">
+            <div class="bs-component">
+              
+              {{ render(controller("NACJobBundle:Job:menu", {'limit': 3})) }}
+            </div>
+          </div>
+		  
+		  <div class="col-lg-4">
+			<div class="bs-component">
+			    {{ render(controller("NACProspectBundle:Prospect:menuprospect", {'limit': 3})) }}
+			</div>
+          </div>
+		  
+		  <div class="col-lg-4">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title">A propos de Net Africa Consult</h3>
+			  </div>
+			  <div class="panel-body">
+				
+				<ul class="nav nav-tabs">
+				  <li class="active"><a href="#home" data-toggle="tab">Qui sommes-nous?</a></li>
+				  <li><a href="#profile" data-toggle="tab">Nos services</a></li>
+				  
+				</ul>
+				<div id="myTabContent" class="tab-content">
+				  <div class="tab-pane fade active in" id="home">
+					<br />
+					<div class="list-group">
+					  <a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">L'agence Web</h4>
+						<p class="list-group-item-text">
+						En octobre 2011, Net Africa Consult naît d'une idée de plusieurs jeunes acteurs des Technologies de l’Information et de la Communication (TIC), spécialisés en Web.
+					    </p>
+					
+					  </a>
+					  <a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">Pourquoi nous?</h4>
+						<p class="list-group-item-text">
+						Nous vous proposons une vision originale de votre projet en fonction de vos envies et pas seulement des possibilités limitées d'un studio de création interne.
+						</p>
+					  </a>
+					  
+					   <a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">Quelles méthodes?</h4>
+						<p class="list-group-item-text">
+						Nous vous accompagnons dans votre stratégie de communication, en choisissant "à la carte" les acteurs qui interviendront en totale synergie avec votre image.
+						</p>
+					  </a>
+					  
+					  <a href="#" class="list-group-item">
+						<h4 class="list-group-item-heading">L'équipe de Net Africa Consult</h4>
+						<p class="list-group-item-text">Nous sommes une équipe de spécialistes en conception et en réalisation de site internet
+					et de logiciels destinés au Web. 
+					</p>
+					<p class="list-group-item-text">
+					Ensemble, nous collaborons au processus de création et à toutes les étapes conduisant à un produit qui rejoindra et surpassera vos attentes.   
+                    Chacun de nos collaborateurs est un technicien, expert depuis plusieurs années dans son domaine:
+					<ul>
+					   <li>Développement Web;</li>
+					   <li>Intégration du développement;</li>
+					   <li>e-Commerce;</li>
+					   <li>e-Marketing;</li>
+					   <li>e-Management;</li>
+					   <li>Référencement;</li>
+					   <li>Graphisme;</li>
+					</ul>
+					</p>
+					  
+					  </a>
+					 
+					 <a href="mailto:info@netafrica-consult.com" class="list-group-item">
+						<h4 class="list-group-item-heading">Informations de contact</h4>
+						<p class="list-group-item-text">
+						Siège social: Ouagadougou<br />
+						Boite postale: 17 BP 165 Ouagadougou 17<br />
+						 Tel.: 00226 72 01 27 60 / 78 50 95 60<br />
+						 E-mail: info@netafrica-consult.com 
+						 
+						</p>
+					  </a>
+					 
+					</div>
+				  
+				  </div>
+				  <div class="tab-pane fade" id="profile">
+					<br />
+					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h3 class="panel-title">DEVELOPPEMENT WEB</h3>
+					  </div>
+					  <div class="panel-body">
+						<h4 class="list-group-item-heading">Nos offres packs Web</h4>
+						<ul>
+						   <li>Pack Web vitrine</li>
+						   <li>Pack Web vitrine plus</li>
+						   <li>Pack Web dynamique</li>
+						   <li>Pack Web multimédia</li>
+						   <li>Pack Web flash/XML</li>
+						</ul>
+						
+						<ul class="list-group">
+						  <li class="list-group-item">
+							<span class="badge">100.000 FCFA</span>
+							Packs Web à partir de: 
+						  </li>
+						</ul>
+						
+						<hr>
+						
+						<h4 class="list-group-item-heading">Nos offres packs e-commerce</h4>
+						<ul>
+						   
+						   <li>Boutique en ligne BASIC</li>
+						   <li>Boutique en ligne STANDARD</li>
+						   <li>Boutique en ligne EXPERT</li>
+						   <li>Comparatifs boutique en ligne</li>
+						</ul>
+						
+						<ul class="list-group">
+						  <li class="list-group-item">
+							<span class="badge">200.000 FCFA</span>
+							Packs e-busness à partir de: 
+						  </li>
+						</ul>
+						
+						<hr>
+						
+						<h4 class="list-group-item-heading">Nos Packs Web Professionnels</h4>
+						<ul>
+						   
+						   <li>Pack Web immobilier</li>
+						   <li>Pack Web hotel</li>
+						   <li>Logiciel de facturation en ligne</li>
+						   <li>Pack Web créateur entreprise</li>
+						</ul>
+						
+						<ul class="list-group">
+						  <li class="list-group-item">
+							<span class="badge">300.000 FCFA</span>
+							Packs Web Pro à partir de: 
+						  </li>
+						</ul>
+						
+						<hr>
+						
+					  </div>
+					</div>
+					
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+						<h3 class="panel-title">FORMATION A LA CARTE</h3>
+					  </div>
+					  <div class="panel-body">
+						<p class="list-group-item-text">
+						Parce que tout le monde n'a pas les mêmes besoins ni les mêmes niveaux de départ, nous 
+						proposons des formations informatique sur site (à domicile - au bureau) ou dans nos 
+						locaux totalement personnalisées à votre demande: le contenu des cours informatique est
+						adapté à chacun.
+						</p>
+						<p class="list-group-item-text">
+						 Quelques exemples de ce que nous proposons et de ce que vous pouvez demander:
+						  <ul>
+						    <li>Programmation Web: PHP, Perl, HTML, XHTML, CSS</li>
+							<li>Atelier de génie logiciel: Windev</li>
+							<li>Design graphique: Dreamweaver, flash, PowerPoint, Photoshop</li>
+							<li>Base de données: MySQL, PostgreSQL, Oracle, Access</li>
+							<li>Solutions de Gestion de contenu Web: Drupal, Joomla, SPIP</li>
+							<li>Framwork: Symfony, Zend framework</li>
+							<li>ORM: Doctrine, Propel</li>
+							<li>Systèmes d'exploitation: Windows - Mac - Linux</li>
+							<li>Internet & Réseaux sociaux</li>
+						  </ul>
+					    </p>
+					  </div>
+					</div>
+					
+					 
+					
+					
+				  </div>
+				</div>
+				
+			  </div>
+			</div>
+			
+		   
+		  </div>
+		  
+		  
+		<div class="col-lg-4">
+            <div class="panel panel-danger">
+				<div class="panel-heading">
+							<h3 class="panel-title">Suivez-nous sur Facebook</h3>
+				</div>
+				<div class="panel-body">
+					<div class="fb-page" data-href="https://www.facebook.com/netafricaconsult" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/netafricaconsult"><a href="https://www.facebook.com/netafricaconsult">Net Africa Consult</a></blockquote></div></div>		
+				</div>
+		    </div>
+		</div>
+		  
+		  
+        </div>
+
+        <!-- Blockquotes -->
+
+       
+      </div>
+      
+	  <nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#">© 2016 Net Africa Consult. Tous droits réservés.</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+								
+			  </ul>
+			  <form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+				  <input class="form-control" placeholder="Search" type="text">
+				</div>
+				<button type="submit" class="btn btn-default">OK</button>
+			  </form>
+			  <ul class="nav navbar-nav navbar-right">
+				<li><a href="mailto:info@netafrica-consult.com">info@netafrica-consult.com</a></li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+		
+		
+	  {% block javascripts %}
+		{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	  {% endblock %}
+  </body>
+</html>
