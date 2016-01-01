@@ -1,0 +1,9 @@
+.mail-notice { text-align: center; padding-top: 10px; background: #DFF2BF; border: 1px solid; color: #4F8A10; margin-bottom: 10px; }
+form.mail div { clear: left; margin-bottom: 10px; padding-top: 10px; }
+form.mail label { float: left; margin-right: 0px; text-align: right; width: 90px; font-weight: bold; vertical-align: top; padding-top: 10px; }
+form.mail input[type="text"],
+form.mail input[type="email"]
+    { width: 370px; line-height: 26px; min-height: 26px; float: right }
+form.mail textarea { width: 370px; height: 150px; line-height: 26px;  float: right}
+form.mail input[type="submit"] { margin-left: 115px; width: 370px; line-height: 26px; min-height: 26px; margin-top: 15px; }
+form.mail ul li { color: #ff0000; margin-bottom: 10px; }
