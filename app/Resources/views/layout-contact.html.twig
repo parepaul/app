@@ -9,16 +9,14 @@
   <title>{% block title %}NAC Plateforme{% endblock %}</title>
   
   {% block stylesheets %}
-        
+          {% stylesheets 'bundles/nacnetafrica/css/*' filter='cssrewrite' %}
+    		<link rel="stylesheet" href="{{ asset_url }}" />
+  	  {% endstylesheets %}
+
+  	  {% javascripts '@NACNetafricaBundle/Resources/public/js/*' %}
+    		<script type="text/javascript" src="{{ asset_url }}"></script>
+  	  {% endjavascripts %}        
 		
-	  {% stylesheets 'bundles/public/css/*' filter='cssrewrite' %}
-		<link rel="stylesheet" href="{{ asset_url }}" />
-	  {% endstylesheets %}
-	  
-	  {% javascripts 'bundles/public/js/*' %}
-		<script type="text/javascript" src="{{ asset_url }}"></script>
-	  {% endjavascripts %}
-  
   {% endblock %}
   
   <!--[if lt IE 9]>

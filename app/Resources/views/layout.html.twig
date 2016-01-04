@@ -8,11 +8,11 @@
 
   <title>{% block title %}NAC Plateforme{% endblock %}</title>
   
-  {% stylesheets 'bundles/public/css/*' filter='cssrewrite' %}
+  {% stylesheets 'bundles/nacnetafrica/css/*' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
   {% endstylesheets %}
   
-  {% javascripts 'bundles/public/js/*' %}
+  {% javascripts '@NACNetafricaBundle/Resources/public/js/*' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
   {% endjavascripts %}
   
